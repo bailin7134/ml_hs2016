@@ -61,7 +61,7 @@ we know $a^{T}x = (a_1, a_2, ... a_n)$
 		=a_1x_1+a_2x_2+\cdots a_nx_n
 		= \sum_{i=1}^n a_i x_i
 \end{equation}
-according to the mathmatics definition of $\nabla_xf(x)$ and equation (\ref{a_time_x}), we know
+according to the mathematics definition of $\nabla_xf(x)$ and equation (\ref{a_time_x}), we know
 \begin{equation}\label{gradient_atx}
 	\nabla_x(a^Tx)=
 		\left(  
@@ -130,7 +130,7 @@ The $i$th element of $x^TA$ is
 	=x_1a_{i1} + x_1a_{i1} + \cdots x_na_{in}
 	=\sum_{p=1}^n x_pa_{ip} 
 \end{equation}
-same princple, $x^TAx$'s product is
+same principle, $x^TAx$'s product is
 \begin{equation}\label{xt_a_x}
 	x^TAx = (\sum_{p=1}^n x_pa_{1p})x_1 + (\sum_{p=1}^n x_pa_{2p})x_2 + \cdots (\sum_{p=1}^n x_pa_{np})x_n
 	= \sum_{p=1}^n \sum_{q=1}^n x_pa_{pq}x_q
@@ -156,21 +156,19 @@ take question (\ref{gradient_xtax})'s $i$th element for example, the $\frac{\par
 \\
 since matrix $A$ is symmetrical, $a_{ij=a_{ji}}$, equation (\ref{gradient_xtax_i}) becomes
 \begin{equation}\label{gradient_xtax_i_mod}
-	\frac{\partial(\sum_{p=1}^n \sum_{q=1}^n x_pa_{pq}x_q)}{\partial x_i} \\
+	\frac{\partial(\sum_{p=1}^n \sum_{q=1}^n x_pa_{pq}x_q)}{\partial x_i}
 	=\frac{\partial(2\sum_{p=1}^n x_ix_pa_{pi}}{\partial x_i}=2\sum_{p=1}^n x_ix_pa_{pi}+2x_ia_{ii}
 \end{equation}
 , where $p\neq i$.\\
 Since $2x_ia_{ii}$ is the expression of $x_ix_pa_{pi}$ when $p=i$, we know
 
 \begin{equation}\label{gradient_xtax_i_final}
-	\frac{\partial(\sum_{p=1}^n \sum_{q=1}^n x_pa_{pq}x_q)}{\partial x_i} \\
+	\frac{\partial(\sum_{p=1}^n \sum_{q=1}^n x_pa_{pq}x_q)}{\partial x_i}
 	=2\sum_{p=1}^n xpa_{ip}
 \end{equation}
 so, the $i$th element of $\nabla_x(x^TAx)$ is $2\sum_{p=1}^n x_pa_{ip}$.\\
-\\
 \noindent
-While $2x^TA$'s $i$th element is $2\sum_{p=1}^n x_pa_{ip}$ as well.\\
-Therefore, $\nabla_x(x^TAx)=2x^TA$ is proved.
+While $2x^TA$'s $i$th element is $2\sum_{p=1}^n x_pa_{ip}$ as well.Therefore, $\nabla_x(x^TAx)=2x^TA$ is proved.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%   question 2
@@ -317,36 +315,36 @@ the 4 matrix norm properties are:
 	\item For all $x, y\in \mathbb{R}^{n}$, $f(x+y)\le f(x)+f(y)$ (triangle inequality)
 \end{enumerate}
 The definition of Frobenius norm is
-\begin{equation}\label{frob_norm}
+\begin{equation}
 	\lVert A\rVert_F=\sqrt{\sum_{i=1}^m\sum_{j=1}^nA_{ij}^2}=\sqrt{tr(A^TA)}
 \end{equation}
 \textbf{non-negativity}\\
 since matrix is in real number space, $A_{ij}^2\geq 0$, so sum of each $A_{ij}^2$ must be greater or equal to 0, so as it's square root. So $\lVert A\rVert_F\geq 0$\\
 \textbf{definiteness}\\
-if $\sqrt{\sum_{i=1}^m\sum_{j=1}^nA_{ij}^2}=0$, $\sum_{i=1}^m\sum_{j=1}^nA_{ij}^2$ must be 0. And $A_{ij}$ msut be 0. Thus, the matrix $A$ is null matrix.\\
+if $\sqrt{\sum_{i=1}^m\sum_{j=1}^nA_{ij}^2}=0$, $\sum_{i=1}^m\sum_{j=1}^nA_{ij}^2$ must be 0. And $A_{ij}$ must be 0. Thus, the matrix $A$ is null matrix.\\
 So the conclusion, if and only if matrix $A$ is 0, it's Frobenius norm is 0.\\
 \textbf{homogeneity}\\
 The Frobenius norm of $tA$ (where $t$ is a constant) is 
-\begin{equation}\label{t_frob_norm}
+\begin{equation}
 	\lVert tA\rVert_F=\sqrt{\sum_{i=1}^m\sum_{j=1}^n(tA_{ij})^2}=\mid t\mid\sqrt{tr(A^TA)}=\mid t\mid\lVert A\rVert_F
 \end{equation}
 So it fulfill the property of homogeneity.\\
-\textbf{triangle inequality}\\
-\begin{equation}\label{ab_frob_norm}
+\textbf{triangle inequality}
+\begin{equation}
 	\lVert A+B\rVert_F=\sqrt{\sum_{i=1}^m\sum_{j=1}^n(A_{ij}+B_{ij})^2}
 \end{equation}
 Extract one arbitrary element for example, $\sqrt{(A_{ij}+B_{ij})^2}=\mid A_{ij}+B_{ij}\mid$, and it's not hard to get 
-\begin{equation}\label{equa}
+\begin{equation}
 	\mid A_{ij}+B_{ij}\mid \le \mid A_{ij}\mid +\mid B_{ij}\mid
 \end{equation}
 so we could get the conclusion 
-\begin{equation}\label{equa2}
+\begin{equation}
 	\sqrt{\sum_{i=1}^m\sum_{j=1}^n(A_{ij}+B_{ij})^2} \le \sqrt{\sum_{i=1}^m\sum_{j=1}^n A_{ij}^2} + \sqrt{\sum_{i=1}^m\sum_{j=1}^n B_{ij}^2}
 \end{equation}
-\begin{equation}\label{equa_final}
+\begin{equation}
 	\lVert A+B\rVert_F\le \lVert A\rVert_F+\lVert B\rVert_F
 \end{equation}
-Therefore, Frobenius norm fuifull the property of triangle inequality as well.
+Therefore, Frobenius norm fulfill the property of triangle inequality as well.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%   question 4, sub question (b)
@@ -358,7 +356,7 @@ due to the fact $\lVert A+B\rVert_F=tr(A^TA)$, we could have
 \end{equation}
 then this question is the same as question 3(c), from equation and (\ref{aa_ii}) and (\ref{trAA_grad})
 we can get
-\begin{equation}\label{trAA_from}
+\begin{equation}\label{trAA_from_final}
 	\nabla_A(\lVert A\rVert_F^2)=2A
 \end{equation}
 	
