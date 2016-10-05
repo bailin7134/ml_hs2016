@@ -189,64 +189,18 @@
 	\section*{Solution of question 2}
 	
 	\begin{equation}\label{Ax-b_grad_1}
+	\begin{split}
 	\nabla_x\lVert Ax-b\rVert_2^2
 	=\nabla_x (Ax-b)^T(Ax-b)
-	=\nabla_x (Ax-b)^TI(Ax-b)
+	=\nabla_x (x^TA^TAx-2b^TAx+b^Tb) \\
+	=\nabla_x x^TA^TAx-\nabla_x2b^TAx+\nabla_x b^Tb
+	\end{split}
 	\end{equation}
-	According to the result of question 1(b) $\nabla_x(x^TAx)=2Ax$, plus chain rule, we know,
+	According to the result of question 1 $\nabla_x(x^TAx)=2Ax$, we know,
 	\begin{equation}\label{Ax-b_grad_2}
 	\nabla_x\lVert Ax-b\rVert_2^2
-	=\nabla_x (Ax-b)^TI(Ax-b)
-	=2(Ax-b)^T\frac{\partial(Ax-b)}{\partial x}
-	\end{equation}
-	The $i$th element of $Ax-b$ is $\sum_{k=1}^n a_{ik}x_k-b_i$, so 
-	\begin{equation}\label{Ax-b_grad_3}
-	\frac{\partial(Ax-b)}{\partial(x)}
-	=
-	\left(  
-	\begin{array}{c}  
-	\frac{\partial(\sum_{k=1}^n a_{1k}x_k-b_i)}{\partial x_1} \\
-	\vdots \\
-	\frac{\partial(\sum_{k=1}^n a_{ik}x_k-b_i)}{\partial x_i} \\
-	\vdots \\
-	\frac{\partial(\sum_{k=1}^n a_{nk}x_k-b_i)}{\partial x_n} \\
-	\end{array}
-	\right)
-	=
-	\left(  
-	\begin{array}{c}  
-	\frac{\partial(a_{11}x_1)}{\partial x_1} \\
-	\vdots \\
-	\frac{\partial(a_{ii}x_i)}{\partial x_i} \\
-	\vdots \\
-	\frac{\partial(a_{nn}x_n)}{\partial x_n} \\
-	\end{array}
-	\right)
-	=
-	\left(  
-	\begin{array}{c}  
-	a_{11} \\
-	\vdots \\
-	a_{ii} \\
-	\vdots \\
-	a_{nn} \\
-	\end{array}
-	\right)
-	\end{equation}
-	where $a_{ii}$ is $(i, i)$ the element of matrix $A$. It is also the diagonal element.
-	Therefore,
-	\begin{equation}\label{Ax-b_grad_2}
-	\nabla_x\lVert Ax-b\rVert_2^2
-	=\nabla_x (Ax-b)^TI(Ax-b)
-	=2(Ax-b)^T 
-	\left(  
-	\begin{array}{c}  
-	a_{11} \\
-	a_{22} \\
-	\vdots \\
-	a_{nn} \\
-	\end{array}
-	\right)
+	=\nabla_x x^TA^TAx-\nabla_x2b^TAx+\nabla_x b^Tb
+	=2A^TAx-2A^Tb
 	\end{equation}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
