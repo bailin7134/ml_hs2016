@@ -1,0 +1,177 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{color}
+
+\makeatletter
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+	{-3.5ex \@plus -1ex \@minus -.2ex}%
+	{2.3ex \@plus.2ex}%
+	{\normalfont\large\bfseries}}% from \Large
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\large\bfseries}}% from \large
+\makeatother
+
+\begin{document}
+	
+	% --------------------------------------------------------------
+	%                         Start here
+	% --------------------------------------------------------------
+	
+	%\renewcommand{\qedsymbol}{\filledbox}
+	
+	\title{\textbf{Machine Learning Assignment \#3}\\
+	Universit{\"a}t Bern}%replace X with the appropriate number
+	\author{Lin Bai 09935404} %replace with your name
+	
+	\maketitle
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   notations
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	\section*{notations}
+%	$A, B, C\in \mathbb{R}^{n\times n}$ are $n\times n$ matrices, $x, a, b\in \mathbb{R}^n$ are column vectors.
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 1, sub question (a)
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 1}
+	According to the definition of mutlivariate normal distribution, the probability density function is
+	\begin{equation}{\label{mul_gaus}}
+		p(x;\mu,\varSigma)=\frac{1}{(2\pi)^{n/2}\mid\varSigma\mid^{1/2}}exp\left(\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu)\right)
+	\end{equation}
+	Suppose 
+	\begin{equation}
+		\left[
+		\begin{array}{c}  
+			x_A\\
+			x_B
+		\end{array}
+		\right]
+		\sim\mathcal{N}
+		\left(
+			\left[
+			\begin{array}{c}
+				\mu_A\\
+				\mu_B
+			\end{array}
+			\right],
+			\left[
+			\begin{array}{cc}
+				\varSigma_{AA} & \varSigma_{AB}\\
+				\varSigma_{BA} & \varSigma_{BB}
+			\end{array}
+			\right]
+		\right)		
+	\end{equation}
+	, where $x_A\in \mathbb{R}^n$, $x_B\in \mathbb{R}^n$. The marginal densities,
+	\begin{equation}
+		p(x_A)=\int_{x_B\in \mathbb{R}^n}p(x_A,x_B;\mu,\varSigma)dx_B
+	\end{equation}
+	\begin{equation}
+		p(x_B)=\int_{x_A\in \mathbb{R}^n}p(x_A,x_B;\mu,\varSigma)dx_A
+	\end{equation}
+	are Gaussian
+	\begin{equation}
+		x_A\sim\mathcal{N}(\mu_A,\varSigma_{AA})
+	\end{equation}
+	\begin{equation}
+		x_B\sim\mathcal{N}(\mu_B,\varSigma_{BB})
+	\end{equation}
+	\noindent
+	Apply the equations above to equation \ref{mul_gaus}, then
+	\begin{equation}
+	\begin{aligned}
+	\begin{split}
+		p(x_A)&=\int_{x_B\in \mathbb{R}^n}p(x_A,x_B;\mu,\varSigma)dx_B\\
+		&=\frac{1}{(2\pi)^n\mid
+		\begin{array}{cc}
+			\varSigma_{AA} & \varSigma_{AB}\\
+			\varSigma_{BA} & \varSigma_{BB}
+		\end{array}
+		\mid^{1/2}
+		}\\&
+		\int_{x_B\in \mathbb{R}^n}exp(
+		-\frac{1}{2}
+		\left[
+		\begin{array}{c}
+			x_A-\mu_A\\
+			x_B-\mu_B
+		\end{array}
+		\right]^T
+		\left[
+		\begin{array}{cc}
+			\varSigma_{AA} & \varSigma_{AB}\\
+			\varSigma_{BA} & \varSigma_{BB}
+		\end{array}
+		\right]^{-1}
+		\left[
+		\begin{array}{c}
+			x_A-\mu_A\\
+			x_B-\mu_B
+		\end{array}
+		\right]
+		)dx_B
+	\end{split}
+	\end{aligned}
+	\end{equation}
+	\noindent
+	Define
+	\begin{equation}
+		V=\left[
+		\begin{array}{cc}
+			\varSigma_{AA} & \varSigma_{AB}\\
+			\varSigma_{BA} & \varSigma_{BB}
+		\end{array}
+		\right]=\varSigma^{-1}
+	\end{equation}
+	\noindent
+	The marginal density is
+	\begin{equation}
+	\begin{aligned}
+	\begin{split}
+	p(x_A)&=\frac{1}{Z}
+	\int_{x_B\in \mathbb{R}^n}exp(
+	-\frac{1}{2}
+	\left[
+	\begin{array}{c}
+	x_A-\mu_A\\
+	x_B-\mu_B
+	\end{array}
+	\right]^T
+	\left[
+	\begin{array}{cc}
+	\varSigma_{AA} & \varSigma_{AB}\\
+	\varSigma_{BA} & \varSigma_{BB}
+	\end{array}
+	\right]^{-1}
+	\left[
+	\begin{array}{c}
+	x_A-\mu_A\\
+	x_B-\mu_B
+	\end{array}
+	\right]
+	)dx_B\\
+	&=\frac{1}{Z}exp\left(-\left[\frac{1}{2}(x_A-\mu_A)^TV_{AA}(x_A-\mu_A)+\frac{1}{2}(x_A-\mu_A)^TV_{AB}(x_B-\mu_B)+\right.\right.\\
+	&\left.\left.\frac{1}{2}(x_B-\mu_B)^TV_{BA}(x_A-\mu_A)+\frac{1}{2}(x_B-\mu_B)^TV_{BB}(x_B-\mu_B)]\right)\right)dx_B
+	\end{split}
+	\end{aligned}
+	\end{equation}
+	
+	
+	
+	
+	% --------------------------------------------------------------
+	%     You don't have to mess with anything below this line.
+	% --------------------------------------------------------------
+	
+\end{document}
