@@ -42,133 +42,203 @@
 %	$A, B, C\in \mathbb{R}^{n\times n}$ are $n\times n$ matrices, $x, a, b\in \mathbb{R}^n$ are column vectors.
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	%%%%%%   question 1, sub question (a)
+	%%%%%%   question 1
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section*{Solution of question 1}
-	According to the definition of mutlivariate normal distribution, the probability density function is
-	\begin{equation}{\label{mul_gaus}}
-		p(x;\mu,\varSigma)=\frac{1}{(2\pi)^{n/2}\mid\varSigma\mid^{1/2}}exp\left(\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu)\right)
+	Since matrix $A$ is positive definite, $A$ is invertible and symmetric.\\
+	According to the completion of squares, we have
+	\begin{equation}{\label{comp_square}}
+		\frac{1}{2}x^TAx+b^T+c = \frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)+c-\frac{1}{2}b^TA^{-1}b
 	\end{equation}
-	Suppose 
-	\begin{equation}
-		\left[
-		\begin{array}{c}  
-			x_A\\
-			x_B
-		\end{array}
-		\right]
-		\sim\mathcal{N}
+	So
+	\begin{equation}{\label{int_exp}}
+	\begin{split}
+	\begin{aligned}
+		\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)-c+\frac{1}{2}b^TA^{-1}b\right)dx\\
+		=\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)\right)exp(-c+\frac{1}{2}b^TA^{-1}b)dx\\
+		=exp(\frac{1}{2}b^TA^{-1}b-c)\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)\right)dx
+	\end{aligned}
+	\end{split}
+	\end{equation}
+	According to the properties of Multivariate Gaussian,
+	\begin{equation}{\label{gaus_int}}
+		\int_{x\in\mathbb{R}^n}p(x;\mu,\varSigma)dx = 1
+	\end{equation}
+	\begin{equation}{\label{gaus_int_ext1}}
+		\frac{1}{(2\pi)^{n/2}\mid\varSigma\mid^{1/2}}\int_{x\in\mathbb{R}^n}exp(-\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu))dx = 1
+	\end{equation}
+	\begin{equation}{\label{gaus_int_ext2}}
+		\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu)\right)dx = \frac{1}{(2\pi)^{n/2}\mid\varSigma\mid^{1/2}}
+	\end{equation}
+	\noindent
+	Bring equation \ref{gaus_int_ext2} to equation \ref{int_exp}, we have
+	\begin{equation}{\label{gaus_int_ext3}}
+	\begin{split}
+		\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)-c+\frac{1}{2}b^TA^{-1}b\right)dx\\
+		=exp(\frac{1}{2}b^TA^{-1}b-c)(2\pi)^{n/2}\mid\varSigma\mid^{1/2}
+	\end{split}
+	\end{equation}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 2
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 2}
+	According to the mathematic definition of conditional probability function,
+	\begin{equation}{\label{cond_proba_1}}
+	\begin{split}
+		f(x_1\mid x_2, \cdots x_n)=\frac{f(x1, x2, \cdots x_n)}{f(x2, \cdots x_n)}
+	\end{split}
+	\end{equation}
+	\begin{equation}{\label{cond_proba_2}}
+	\begin{aligned}
+		f(x_1, x_2, \cdots x_n)&=f(x_n\mid x_1, \cdots x_{n-1})\cdot f(x1, x2, \cdots x_{n-1})\\
+		&=f(x_n\mid x_1, \cdots x_{n-1})\cdot f(x_n\mid x_1, \cdots x_{n-2})\cdots f(x1, x2, \cdots x_{n-2})\\
+		&=f(x_n\mid x_1, \cdots x_{n-1})\cdot f(x_n\mid x_1, \cdots x_{n-1})\cdots f(x_2\mid x_1)\cdot f(x_1)\\
+		&=f(x_1)\prod_{i=2}^{n}f(x_i\mid x_1,\cdots,x_{i-1})
+	\end{aligned}
+	\end{equation}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 3, sub question (a)
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 3}
+	\subsection*{(a)}
+	Assume $cov[X, Y]\neq 0$, we get
+	\begin{equation}{\label{covarience}}
+	\begin{aligned}
+		cov[X, Y]
+		&=E[(X-E[X])(Y-E[Y]]\\
+		&=E[XY-XE[X]-YE[Y]+E[X]E[Y]]\\
+		&=E[XY]-E[X]E[Y]-E[Y]E[X]+E[X]E[Y]\\
+		&=E[XY]-E[X]E[Y]\\
+		&\neq 0
+	\end{aligned}
+	\end{equation}
+	\noindent
+	So we get $E[XY]\neq E[X]E[Y]$.
+	However, since $X$ and $Y$ are independent, this means
+	\begin{equation}{\label{independent}}
+	\begin{aligned}
+		E[XY]=E[X]E[Y]
+	\end{aligned}
+	\end{equation}
+	Equation \ref{independent} and equation \ref{covarience} are contradict to each other. So the assumption is not true.\\
+	Therefore, if $X$ and $Y$ are independent, $cov[X,Y]=0$.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 3, sub question (b)
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\subsection*{(b)}
+	\textbf{symmetric}\\
+	According to the mathematic definition, $(i,j)$th element of the covariance matrix of n-dimension random variables $(X_1, X_2, ... , X_n$ is 
+	\begin{equation}{\label{cov_ij}}
+	\begin{aligned}
+		C_{i,j}
+		&=cov(X_i,X_j)\\
+		&=E[(X_i-E[X_i])(X_j-E[X_j)]\\
+		&=E[X_iX_j-X_iE[X_j]-X_jE[X_i]+E[X_i]E[X_j]\\
+		&=E[X_iX_j]-E[X_i]E[X_j]-E[X_j]E[X_i]+E[X_i]E[X_j]\\
+		&=E[X_iX_j]-E[X_i]E[X_j]
+	\end{aligned}
+	\end{equation}
+	\noindent
+	, where $i,j=1,2, ... ,n$.\\
+	Since $E[X]E[Y]=E[Y]E[X]$,
+	\begin{equation}{\label{cov_ji}}
+	\begin{aligned}
+		C_{j,i}=E[X_jX_i]-E[X_j]E[X_i]
+	\end{aligned}
+	\end{equation}
+	So $C_{i,j} = C_{j,i}$, this means covariance matrix is symmetric.\\
+	\textbf{semi-definite}\\
+	The covariance matrix is
+	\begin{equation}{\label{cov_full}}
+	\begin{aligned}
+		\varSigma &= 
 		\left(
-			\left[
-			\begin{array}{c}
-				\mu_A\\
-				\mu_B
-			\end{array}
-			\right],
-			\left[
-			\begin{array}{cc}
-				\varSigma_{AA} & \varSigma_{AB}\\
-				\varSigma_{BA} & \varSigma_{BB}
-			\end{array}
-			\right]
-		\right)		
-	\end{equation}
-	, where $x_A\in \mathbb{R}^n$, $x_B\in \mathbb{R}^n$. The marginal densities,
-	\begin{equation}
-		p(x_A)=\int_{x_B\in \mathbb{R}^n}p(x_A,x_B;\mu,\varSigma)dx_B
-	\end{equation}
-	\begin{equation}
-		p(x_B)=\int_{x_A\in \mathbb{R}^n}p(x_A,x_B;\mu,\varSigma)dx_A
-	\end{equation}
-	are Gaussian
-	\begin{equation}
-		x_A\sim\mathcal{N}(\mu_A,\varSigma_{AA})
-	\end{equation}
-	\begin{equation}
-		x_B\sim\mathcal{N}(\mu_B,\varSigma_{BB})
-	\end{equation}
-	\noindent
-	Apply the equations above to equation \ref{mul_gaus}, then
-	\begin{equation}
-	\begin{aligned}
-	\begin{split}
-		p(x_A)&=\int_{x_B\in \mathbb{R}^n}p(x_A,x_B;\mu,\varSigma)dx_B\\
-		&=\frac{1}{(2\pi)^n\mid
-		\begin{array}{cc}
-			\varSigma_{AA} & \varSigma_{AB}\\
-			\varSigma_{BA} & \varSigma_{BB}
+		\begin{array}{ccc}
+			cov[X_1,X_1], &\cdots, &cov[X_1X_n]\\
+			cov[X_2,X_1], &\cdots, &cov[X_2X_n]\\
+			\cdots\\
+			cov[X_n,X_1], &\cdots, &cov[X_nX_n]\\
 		\end{array}
-		\mid^{1/2}
-		}\\&
-		\int_{x_B\in \mathbb{R}^n}exp(
-		-\frac{1}{2}
-		\left[
-		\begin{array}{c}
-			x_A-\mu_A\\
-			x_B-\mu_B
+		\right)\\
+		&= 
+		\left(
+		\begin{array}{ccc}
+			E[X_1X_1]-E[X_1]E[X_1], &\cdots, &E[X_1X_n]-E[X_1]E[X_n]\\
+			E[X_1X_1]-E[X_1]E[X_1], &\cdots, &E[X_2X_n]-E[X_2]E[X_n]\\
+			\cdots\\
+			E[X_nX_n]-E[X_n]E[X_n], &\cdots, &E[X_nX_n]-E[X_n]E[X_n]\\
 		\end{array}
-		\right]^T
-		\left[
-		\begin{array}{cc}
-			\varSigma_{AA} & \varSigma_{AB}\\
-			\varSigma_{BA} & \varSigma_{BB}
-		\end{array}
-		\right]^{-1}
-		\left[
-		\begin{array}{c}
-			x_A-\mu_A\\
-			x_B-\mu_B
-		\end{array}
-		\right]
-		)dx_B
-	\end{split}
-	\end{aligned}
-	\end{equation}
-	\noindent
-	Define
-	\begin{equation}
-		V=\left[
-		\begin{array}{cc}
-			\varSigma_{AA} & \varSigma_{AB}\\
-			\varSigma_{BA} & \varSigma_{BB}
-		\end{array}
-		\right]=\varSigma^{-1}
-	\end{equation}
-	\noindent
-	The marginal density is
-	\begin{equation}
-	\begin{aligned}
-	\begin{split}
-	p(x_A)&=\frac{1}{Z}
-	\int_{x_B\in \mathbb{R}^n}exp(
-	-\frac{1}{2}
-	\left[
-	\begin{array}{c}
-	x_A-\mu_A\\
-	x_B-\mu_B
-	\end{array}
-	\right]^T
-	\left[
-	\begin{array}{cc}
-	\varSigma_{AA} & \varSigma_{AB}\\
-	\varSigma_{BA} & \varSigma_{BB}
-	\end{array}
-	\right]^{-1}
-	\left[
-	\begin{array}{c}
-	x_A-\mu_A\\
-	x_B-\mu_B
-	\end{array}
-	\right]
-	)dx_B\\
-	&=\frac{1}{Z}exp\left(-\left[\frac{1}{2}(x_A-\mu_A)^TV_{AA}(x_A-\mu_A)+\frac{1}{2}(x_A-\mu_A)^TV_{AB}(x_B-\mu_B)+\right.\right.\\
-	&\left.\left.\frac{1}{2}(x_B-\mu_B)^TV_{BA}(x_A-\mu_A)+\frac{1}{2}(x_B-\mu_B)^TV_{BB}(x_B-\mu_B)]\right)\right)dx_B
-	\end{split}
+		\right)\\
+		&=E[XX^T]-E[X]E[X^T]\\
+		&=E[(X-E[X])(X-E[X])^T]
 	\end{aligned}
 	\end{equation}
 	
-	
-	
+	\begin{equation}{\label{semi_defi}}
+	\begin{aligned}
+		z^T\varSigma z =z^TE[(X-E[X])(X-E[X])^T]z=E[z^T(X-E[X])(X-E[X])^Tz]
+	\end{aligned}
+	\end{equation}
+	Assume $Y=z^T(X-E[X])$, equation \ref{semi_defi} is 
+	\begin{equation}{\label{semi_defi_var1}}
+	\begin{aligned}
+		z^T\varSigma z =E[Y^TY]
+	\end{aligned}
+	\end{equation}
+	Since $Y^TY\ge 0$, for any vector $z$,
+	\begin{equation}{\label{semi_defi_var2}}
+	\begin{aligned}
+		z^T\varSigma z \ge 0
+	\end{aligned}
+	\end{equation}
+	Therefore, covariance matrix is semi-definite.
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 4
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 4}
+	\begin{equation*}
+	\begin{aligned}
+		P(poor) &= P(Female, V0:40.5-, poor)+P(Female, V1:40.5+, poor)\\
+		&+P(Male, V0:40.5-, poor)+P(Male, V1:40.5+, poor)\\
+		&=0.253122+0.0421768+0.331313+0.134106\\
+		&=0.7607178\\
+		\\
+		P(rich) &= P(Female, V0:40.5-, rich)+P(Female, V1:40.5+, rich)\\
+		&+P(Male, V0:40.5-, rich)+P(Male, V1:40.5+, rich)\\
+		&=0.0245895+0.0116293+0.0971295+0.105933\\
+		&=0.2392813\\
+		\\
+		P(Male,poor) &= P(Male, V0:40.5-, poor)+P(Male, V1:40.5+, poor)\\
+		&=0.0245895+0.0116293\\
+		&=0.0361288\\
+		\\
+		P(Male,rich) &= P(Male, V0:40.5-, rich)+P(Male, V1:40.5+, rich)\\
+		&=0.0971295+0.105933\\
+		&=0.2030625\\
+		\\
+		P(Male\mid poor) &= \frac{P(Male, poor)}{P(poor)}\\
+		&=0.0361288/0.7607178\\
+		&=0.047493\\
+		\\
+		P(Male\mid rich) &= \frac{P(Male, rich)}{P(rich)}\\
+		&=0.2030625/0.2392813\\
+		&=0.848635\\
+		\\
+		P(Female\mid poor) &= P(poor)-P(Male, poor)\\
+		&=0.7607178-0.0361288\\
+		&=0.724589\\
+		\\
+		P(Female\mid rich) &= P(rich)-P(Male, rich)\\
+		&=0.2392813-0.2030625\\
+		&=0.0362188
+	\end{aligned}
+	\end{equation*}
+	%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	% --------------------------------------------------------------
 	%     You don't have to mess with anything below this line.
