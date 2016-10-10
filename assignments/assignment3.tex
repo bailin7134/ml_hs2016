@@ -54,9 +54,9 @@
 	\begin{equation}{\label{int_exp}}
 	\begin{split}
 	\begin{aligned}
-		\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)-c+\frac{1}{2}b^TA^{-1}b\right)dx\\
-		=\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)\right)exp(-c+\frac{1}{2}b^TA^{-1}b)dx\\
-		=exp(\frac{1}{2}b^TA^{-1}b-c)\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)\right)dx
+		&\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)-c+\frac{1}{2}b^TA^{-1}b\right)dx\\
+		=&\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)\right)exp(-c+\frac{1}{2}b^TA^{-1}b)dx\\
+		=&exp(\frac{1}{2}b^TA^{-1}b-c)\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)\right)dx
 	\end{aligned}
 	\end{split}
 	\end{equation}
@@ -73,10 +73,10 @@
 	\noindent
 	Bring equation \ref{gaus_int_ext2} to equation \ref{int_exp}, we have
 	\begin{equation}{\label{gaus_int_ext3}}
-	\begin{split}
-		\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)-c+\frac{1}{2}b^TA^{-1}b\right)dx\\
-		=exp(\frac{1}{2}b^TA^{-1}b-c)(2\pi)^{n/2}\mid\varSigma\mid^{1/2}
-	\end{split}
+	\begin{aligned}
+		&\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x+A^{-1}b)^TA(x+A^{-1}b)-c+\frac{1}{2}b^TA^{-1}b\right)dx\\
+		=&exp(\frac{1}{2}b^TA^{-1}b-c)(2\pi)^{n/2}\mid\varSigma\mid^{1/2}
+	\end{aligned}
 	\end{equation}
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
