@@ -65,10 +65,10 @@
 		\int_{x\in\mathbb{R}^n}p(x;\mu,\varSigma)dx = 1
 	\end{equation}
 	\begin{equation}{\label{gaus_int_ext1}}
-		\frac{1}{(2\pi)^{n/2}\mid\varSigma\mid^{1/2}}\int_{x\in\mathbb{R}^n}exp(-\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu))dx = 1
+		\frac{1}{(2\pi)^{n/2}\mid\varSigma\mid^{1/2}}\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu)\right)dx = 1
 	\end{equation}
 	\begin{equation}{\label{gaus_int_ext2}}
-		\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu)\right)dx = \frac{1}{(2\pi)^{n/2}\mid\varSigma\mid^{1/2}}
+		\int_{x\in\mathbb{R}^n}exp\left(-\frac{1}{2}(x-\mu)^T\varSigma^{-1}(x-\mu)\right)dx = (2\pi)^{n/2}\mid\varSigma\mid^{1/2}
 	\end{equation}
 	\noindent
 	Bring equation \ref{gaus_int_ext2} to equation \ref{int_exp}, we have
@@ -146,7 +146,7 @@
 	Since $E[X]E[Y]=E[Y]E[X]$,
 	\begin{equation}{\label{cov_ji}}
 	\begin{aligned}
-		C_{j,i}=E[X_jX_i]-E[X_j]E[X_i]
+		C_{j,i}=E[X_jX_i]-E[X_j]E[X_i]=E[X_iX_j]-E[X_i]E[X_j]
 	\end{aligned}
 	\end{equation}
 	So $C_{i,j} = C_{j,i}$, this means covariance matrix is symmetric.\\
@@ -214,28 +214,28 @@
 		&=0.2392813\\
 		\\
 		P(Male,poor) &= P(Male, V0:40.5-, poor)+P(Male, V1:40.5+, poor)\\
-		&=0.0245895+0.0116293\\
-		&=0.0361288\\
+		&=0.331313+0.134106\\
+		&=0.465419\\
 		\\
 		P(Male,rich) &= P(Male, V0:40.5-, rich)+P(Male, V1:40.5+, rich)\\
 		&=0.0971295+0.105933\\
 		&=0.2030625\\
 		\\
 		P(Male\mid poor) &= \frac{P(Male, poor)}{P(poor)}\\
-		&=0.0361288/0.7607178\\
-		&=0.047493\\
+		&=0.465419/0.7607178\\
+		&=0.6118155\\
 		\\
 		P(Male\mid rich) &= \frac{P(Male, rich)}{P(rich)}\\
 		&=0.2030625/0.2392813\\
 		&=0.848635\\
 		\\
-		P(Female\mid poor) &= P(poor)-P(Male, poor)\\
-		&=0.7607178-0.0361288\\
-		&=0.724589\\
+		P(Female\mid poor) &= 1-P(Male\mid poor)\\
+		&=1-0.6118155\\
+		&=0.3881845\\
 		\\
-		P(Female\mid rich) &= P(rich)-P(Male, rich)\\
-		&=0.2392813-0.2030625\\
-		&=0.0362188
+		P(Female\mid rich) &= 1-P(Male\mid rich)\\
+		&=1-0.848635\\
+		&=0.151365
 	\end{aligned}
 	\end{equation*}
 	%%%%%%%%%%%%%%%%%%%%%%%%
