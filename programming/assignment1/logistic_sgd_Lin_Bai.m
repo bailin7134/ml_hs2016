@@ -21,7 +21,7 @@ function [ theta ] = logistic_sgd_Lin_Bai( data, labels )
 %			theta_new(j)=theta(j)-alpha*diff_J;
 %		end
 		diff_J = (1/(1+exp(transpose(theta)*data(:,k)))-labels(k)).*data(:,k);
-		theta_new=theta-alpha*diff_J;
+		theta_new=theta-alpha*(1/N)*diff_J;
 		theta = theta_new;
 	end
 
