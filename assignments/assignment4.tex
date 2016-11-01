@@ -1,0 +1,79 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{color}
+
+\makeatletter
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+	{-3.5ex \@plus -1ex \@minus -.2ex}%
+	{2.3ex \@plus.2ex}%
+	{\normalfont\large\bfseries}}% from \Large
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\large\bfseries}}% from \large
+\makeatother
+
+\begin{document}
+	
+	% --------------------------------------------------------------
+	%                         Start here
+	% --------------------------------------------------------------
+	
+	%\renewcommand{\qedsymbol}{\filledbox}
+	
+	\title{\textbf{Machine Learning Assignment \#4}\\
+	Universit{\"a}t Bern}%replace X with the appropriate number
+	\author{Lin Bai 09935404} %replace with your name
+	
+	\maketitle
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   notations
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	\section*{notations}
+%	$A, B, C\in \mathbb{R}^{n\times n}$ are $n\times n$ matrices, $x, a, b\in \mathbb{R}^n$ are column vectors.
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 1
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 2}
+	1. \textbf{At what learning rate does the method converge?}\\
+	2. \textbf{What is the optimal learning rate?}\\
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 2
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 4}
+	1. \textbf{What do you expect to see (stochastic gradient vs. Newton) before running the experiment?}\\
+	The Newton method will converge faster than stochastic gradient descent.\\
+	2. \textbf{Which method takes less time to compute one step?}\\
+	Stochastic gradient descent takes less time per step, since no Hessian matrix will be calcualted.\\
+	3. \textbf{Which method requires fewer steps to converge?}\\
+	The newton mathd costs less steps to converge\\
+	4. \textbf{Which method achieves better accuracy?}\\
+	Stochastic gradient descent achieves better accuracy. The result of Newton method will end up the places around the optimal result.\\
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 3, sub question (a)
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 6}
+	1. \textbf{Which method is more computationally efficient?}\\
+	The gaussian discriminant analysis achieves better efficiency.\\
+	2. \textbf{Which method achieves the best accuracy?}\\
+	From the curves showed by logistic regression and gaussian discriminant analysis, GDA has better performance.\\
+
+	%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	% --------------------------------------------------------------
+	%     You don't have to mess with anything below this line.
+	% --------------------------------------------------------------
+	
+\end{document}
