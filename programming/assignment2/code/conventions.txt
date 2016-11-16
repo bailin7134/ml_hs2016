@@ -1,0 +1,12 @@
+
+INTRINSIC COORDINATES: these are the coordinate indices of pixels. For example cint = [ 6; 15 ] is the coordinate of the pixel im( 6, 15 ), where im is an image. These are always integer numbers.
+
+IMAGE COORDINATES: These are the real world image coordinates. There is a linear correspondence between the intrinsic and the world coordinates. In our project we restrict this relationship the following way. The intrinsic coordinates represent the center of the pixels. The side of the pixels are away from the center by 0.5. Image coordinates are floating point numbers. Note that order of intrinsic and image coordinates are reversed. for example if cim = [ 7.0; 61.0 ], it corresponds the center of the pixel im( 61, 7 ).
+
+FRAMES: 6*n matrix, each column describes a key-point. x = f(1) the horizontal coordinate and y = f(2) is the vertical. The rest is described at the vlfeat website.
+
+BOUNDING BOXES: They usually represent the object of interrest. They are column vecors of 4 entries: [xmin;ymin;xmax;ymax]. They are interpreted as image coordinates.
+
+FEAT: feature map extracted from an image. It is a 3 dimensional array, like the HOG features.
+
+U: 2*n matrix, the columns are the top left corners of feature blocks, u(:,i) = [htop;wleft]. See feat2u and feat2blocks functions for more details.
