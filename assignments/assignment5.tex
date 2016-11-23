@@ -64,8 +64,6 @@
 	\end{figure}
 	\noindent
 	Where we could find the optimal value of $\lambda$ is round 0.0001.\\
-	Then further check is done for range from $10^{-4}$ to $10^{-3}$ in Figure \ref{fig:lambda4to3} and range from $10^{-3}$ to $10^{-2}$ in Figure \ref{fig:lambda3to2}. From the figure, we know when $\lambda=0.0004$ the accuracy is highest.\\
-	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%% FIGURE 2
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
@@ -85,11 +83,14 @@
 		\caption{lambda sweep in detail}
 		\label{fig:fig}
 	\end{figure}
+	\\
+	\noindent
+	Then further check is done for range from $10^{-4}$ to $10^{-3}$ in Figure \ref{fig:lambda4to3} and range from $10^{-3}$ to $10^{-2}$ in Figure \ref{fig:lambda3to2}. From the figure, we know when $\lambda=0.0004$ the accuracy is highest.\\
 	\noindent
 	P.S:- Due to the fact that each time we run the exercise1.m, the accuracy varies. Therefore the average of 10 times running is used in the analysis and plotting.\\
 	\\
 	2. \textbf{Compare SVM to the previously implemented learning algorithms (logistic regression and GDA) in terms of classification accuracy.}\\
-	From the classification accuracy point of view, SVM's performance(0.8324) is better than SGD(0.7039) and GDA(0.7353).\\
+	From the classification accuracy point of view, SVM's performance(0.8324) is better than SGD(0.7039) and GDA(0.7353), in pedestrians detection. In case of faces detection, the same results in shown, SVM gives best performance.\\
 	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%   question 2
@@ -109,8 +110,8 @@
 	nodes near coords,
 	nodes near coords align={vertical},
 	]
-	\addplot coordinates {(SVM,0.99109) (SGD,0.9532) (GDA,0.6539)};
-	\addplot coordinates {(SVM,0.91840) (SGD,0.7693) (GDA,0.6648)};
+	\addplot coordinates {(SVM,0.99109) (SGD,0.9532) (GDA,0.9097)};
+	\addplot coordinates {(SVM,0.91840) (SGD,0.7693) (GDA,0.9097)};
 	\legend{HOG, Raw}
 	\end{axis}
 	\end{tikzpicture}
@@ -137,7 +138,8 @@
 	\\
 	\noindent
 	1. \textbf{Compare the HOG features to the raw pixels. Which feature representation	is better for classification?}\\
-	In order to find out the better feature representation for classification, we introduce accuracy-speed product(ASP) to evaluate.\\
+	Concerning to the accuracy/performance, HOG represents a better result comparing to Raw pixel. HOG, however, takes much longer time (usually twice or higher).\\
+	Therefore, in order to find out the better feature representation for classification, we introduce accuracy-speed product(ASP) to evaluate.\\
 	$$ASP = \frac{accuracy[percentage]}{time\_cost[second]}$$
 	Take SVM and faces for example, when HOG is used, the accuracy(average of 10) is  0.9895, and the time cost is 20.51121 seconds. It's ASP is 0.048. On the other hand, when raw pixel is used, the accuracy(average of 10) is 0.9180, and the time cost is 9.893387 seconds. It's ASP is 0.093.\\
 	Therefore, raw pixel is better for classification from accuracy-speed product point of view.\\
@@ -148,6 +150,7 @@
 	\\
 	\noindent
 	3. \textbf{According to the experiments what is more important? The learning algorithm, or the feature representation?}\\
+	From the histogram figures plotted above, we know it is the feature representation weights more than the chosen algorithm. When HOG is use, all the algorithms give a significant better results.\\ 
 	\\
 	\noindent
 	4. \textbf{On which dataset do HOG features help more? Justify your answer.}\\
@@ -164,14 +167,15 @@
 	\\
 	\noindent
 	2. \textbf{What is the difference between the performances on the dataset used previously and the dataset used in this experiment? Explain why you get these results.}\\
-	 
+	Comparing to the previous experiment without sliding window, the current one gives better accuracy, more than 0.99. That is because when used together with HOG, sliding window could handle more image with difference faces size for example. And therefore, reduce the miss detection rate.\\
+	
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%   question 3, sub question (a)
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\section*{Solution of question 4}
 	%%%%%%%%%%%%%%%%%%%%%%%%
-	
+	Through running the default images, we found, only when the front faces are shown in the images, a good detection is shown. This means left-hand side or right-hand side of faces cannot be detected. Besides, there are some errors still, that is wrongly detection.\\
 	% --------------------------------------------------------------
 	%     You don't have to mess with anything below this line.
 	% --------------------------------------------------------------
