@@ -1,0 +1,124 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{color}
+\usepackage{tikz, pgfplots}
+\usepackage{graphicx}
+\usepackage{epstopdf} %converting to PDF
+\usepackage{subcaption}
+
+\makeatletter
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+	{-3.5ex \@plus -1ex \@minus -.2ex}%
+	{2.3ex \@plus.2ex}%
+	{\normalfont\large\bfseries}}% from \Large
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\large\bfseries}}% from \large
+\makeatother
+
+\begin{document}
+	
+	% --------------------------------------------------------------
+	%                         Start here
+	% --------------------------------------------------------------
+	
+	%\renewcommand{\qedsymbol}{\filledbox}
+	
+	\title{\textbf{Machine Learning Assignment \#3}\\
+	Universit{\"a}t Bern}%replace X with the appropriate number
+	\author{Lin Bai 09935404} %replace with your name
+	
+	\maketitle
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   notations
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	\section*{notations}
+%	$A, B, C\in \mathbb{R}^{n\times n}$ are $n\times n$ matrices, $x, a, b\in \mathbb{R}^n$ are column vectors.
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 2
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 2}
+	2. \textbf{Run the k-means algorithm several times on the first data set with different initializations. Do you always get the same solution? If not, why?}\\
+	\noindent
+	As shown in the figure above, different initializations leads to different results. Although in most cases, the correct results are shown, some initial values may lead to wrong result.\\
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% FIGURE 1
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%	\begin{figure}[!htb]
+%		\centering
+%		\includegraphics[scale=.7]{lambda_n8to0}
+%		\caption{lambda sweep from $10^{-8}$ to $10^{-1}$}
+%		\label{fig:lambdaLargeSweep}
+%	\end{figure}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% FIGURE 2
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\begin{figure}[htpb]
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{k-means_1}
+			\caption{when correct initialization values are chosen}
+			\label{fig:k-means_1}
+		\end{subfigure}%
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{k-means_2}
+			\caption{when wrong initialization values are chosen}
+			\label{fig:k-means_2}
+		\end{subfigure}
+		\caption{k-means result}
+		\label{fig:fig}
+	\end{figure}
+	\noindent
+%	\\
+	3. \textbf{An error-free k-means algorithm implementation should not cluster the second dataset according to the ground truth. Explain why this happens.}\\
+	\noindent
+	K-means algorithm valid on round clusters better. Since the moon shape cluster widely spread on the canvas, it is not possible to separate different clusters into non-touched circles.\\
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%   question 3
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section*{Solution of question 3}
+	\begin{tikzpicture}
+	\centering
+	\begin{axis}[
+	title={\textbf{}},
+	ybar,
+	enlargelimits=0.15,
+	legend style={at={(0.5,-0.15)},
+		anchor=north,legend columns=-1},
+	ylabel={accuracy},
+	symbolic x coords={SGD,GDA,SVM},
+	xtick=data,
+	nodes near coords,
+	nodes near coords align={vertical},
+	]
+	\addplot coordinates {(SGD,0.985956) (GDA,0.923473) (SVM,0.987500)};
+	\addplot coordinates {(SGD,0.836268) (GDA,0.807026) (SVM,0.765226)};
+	\legend{HOG, Raw}
+	\end{axis}
+	\end{tikzpicture}
+	\noindent
+	\\
+	1. \textbf{Before running the code, what results do you expect to see? What will be the effect of dimensionality reduction on the accuracy and on the computational time (for each classifier)?}\\
+	\\
+	2. \textbf{Use the raw pixels as a feature representation. Compare the learning algorithms we studied so far (logistic regression, GDA, SVM). What is a good choice for $m$ in each case?}\\
+	\\
+	3. \textbf{Compare the result you get on the HOG features with the result on the raw pixels. If we fix an accuracy level for the classifier, which feature representation (between HOG and raw pixels) requires fewer principal components?}\\
+	\\
+	% --------------------------------------------------------------
+	%     You don't have to mess with anything below this line.
+	% --------------------------------------------------------------
+	
+\end{document}
