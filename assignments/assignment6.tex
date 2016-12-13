@@ -85,6 +85,17 @@
 %	\\
 	3. \textbf{An error-free k-means algorithm implementation should not cluster the second dataset according to the ground truth. Explain why this happens.}\\
 	\noindent
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%% FIGURE 1
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[scale=.7]{dataset2_1}
+		\caption{k-means result in dataset 2}
+		\label{fig:dataset2}
+	\end{figure}
+	\\
+	\noindent
 	K-means algorithm valid on round clusters better. Since the moon shape cluster widely spread on the canvas, it is not possible to separate different clusters into non-touched circles.\\
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%   question 3
@@ -112,11 +123,15 @@
 	\noindent
 	\\
 	1. \textbf{Before running the code, what results do you expect to see? What will be the effect of dimensionality reduction on the accuracy and on the computational time (for each classifier)?}\\
+	The main idea of PCA is to reduce data's dimension so that simplify the complexity of calculation.\\
+	Therefore, the expected computational time will reduce with the decreasing of dimensionality reduction. And among these three algorithms, SVM benefits most from this reduction.\\
 	\\
 	2. \textbf{Use the raw pixels as a feature representation. Compare the learning algorithms we studied so far (logistic regression, GDA, SVM). What is a good choice for $m$ in each case?}\\
+	When using raw pixel as feature representation, the computational time increases greatly with M increases. In the case of SGD and GDA, the computational time increases not much when using greater M. While SVM's computational time increases greatly if greater M is used.\\
+	In my case, M values range from 2 to 10 are applied. When using SGD and GDA, when greater M is, the performance is better. However in case of SVM, the accuracy to computational time ratio is used as criteria. So M= is the best.\\
 	\\
 	3. \textbf{Compare the result you get on the HOG features with the result on the raw pixels. If we fix an accuracy level for the classifier, which feature representation (between HOG and raw pixels) requires fewer principal components?}\\
-	\\
+	From the measured results, when accuracy is fixed(95\%), the XXX needs less principle components.\\
 	% --------------------------------------------------------------
 	%     You don't have to mess with anything below this line.
 	% --------------------------------------------------------------
